@@ -1,17 +1,10 @@
 import * as THREE from "three";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
-import React, {
-  createRef,
-  forwardRef,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import { createRef, forwardRef, useEffect, useRef, useState } from "react";
 
 import { InfuraProvider } from "@ethersproject/providers";
+import { OrbitControls } from "@react-three/drei";
 import { Text } from "troika-three-text";
 import { extend } from "@react-three/fiber";
 import { useDrag } from "react-use-gesture";
@@ -155,7 +148,7 @@ const Blockchain = () => {
     <Canvas>
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
-      {blockData.length && blockRefs.current.length ? (
+      {blockData.length > 0 ? (
         blockData.map((block, index) => (
           <Block
             key={block.timestamp}

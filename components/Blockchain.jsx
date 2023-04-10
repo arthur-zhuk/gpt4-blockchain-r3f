@@ -132,6 +132,7 @@ const Blockchain = () => {
   const [blockData, setBlockData] = useState([]);
   console.log({ blockData });
   const blockRefs = useRef([]);
+  console.log({ blockRefs });
 
   useEffect(() => {
     (async () => {
@@ -145,17 +146,15 @@ const Blockchain = () => {
       setBlockData(mappedBlocks);
     })();
   }, []);
-
   useLayoutEffect(() => {
     blockRefs.current = blockData.map(() => createRef());
-    console.log({ blockRefs });
   }, [blockData]);
 
   return (
     <Canvas>
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
-      {blockData.length > 0 ? (
+      {blockData.length > 0 && blockRefs.current.length > 0 ? (
         blockData.map((block, index) => (
           <Block
             key={`${index}block`}

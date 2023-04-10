@@ -148,7 +148,8 @@ const Blockchain = () => {
 
   useEffect(() => {
     blockRefs.current = blockData.map(() => createRef());
-  }, [blockData]);
+    console.log({ blockRefs });
+  }, [blockData.length, blockData, blockRefs]);
 
   return (
     <Canvas>
@@ -166,14 +167,7 @@ const Blockchain = () => {
           />
         ))
       ) : (
-        <Block
-          key="loading"
-          // position={[-5 + (index % 5) * 3, -Math.floor(index / 5) * 3, 0]}
-          text="Loading blocks"
-          color="purple"
-          index={0}
-          // ref={blockRefs.current[index] || 0}
-        />
+        <Block key="loading" text="Loading blocks" color="purple" index={0} />
       )}
       {blockData.length &&
         blockRefs.current.length &&

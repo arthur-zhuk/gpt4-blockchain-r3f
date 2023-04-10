@@ -170,7 +170,7 @@ const Blockchain = () => {
       ) : (
         <Block key="loading" text="Loading blocks" color="purple" index={0} />
       )}
-      {blockData.length > 0 && blockRefs.current.length > 0
+      {blockData.length > 0 && blockRefs.current.length && blockRefs.current[0]
         ? blockData
             .slice(0, -1)
             .map((block, index) => (

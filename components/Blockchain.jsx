@@ -153,8 +153,7 @@ const Blockchain = () => {
     <Canvas>
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
-      {blockData.length &&
-        blockRefs.current.length &&
+      {blockData.length && blockRefs.current.length ? (
         blockData.map((block, index) => (
           <Block
             key={index}
@@ -164,7 +163,17 @@ const Blockchain = () => {
             index={index}
             ref={blockRefs.current[index]}
           />
-        ))}
+        ))
+      ) : (
+        <Block
+          key="loading"
+          // position={[-5 + (index % 5) * 3, -Math.floor(index / 5) * 3, 0]}
+          text="Loading blocks"
+          color="purple"
+          index={0}
+          // ref={blockRefs.current[index] || 0}
+        />
+      )}
       {blockData.length &&
         blockRefs.current.length &&
         blockData

@@ -151,7 +151,7 @@ const Blockchain = () => {
       {blockData.length > 0 ? (
         blockData.map((block, index) => (
           <Block
-            key={`${block.timestamp + index}`}
+            key={`${index}block`}
             position={[-5 + (index % 5) * 3, -Math.floor(index / 5) * 3, 0]}
             text={block.text}
             color={block.color}
@@ -162,17 +162,19 @@ const Blockchain = () => {
       ) : (
         <Block key="loading" text="Loading blocks" color="purple" index={0} />
       )}
-      {blockData.length > 0 && blockRefs.current.length > 0
-        ? blockData
-            .slice(0, -1)
-            .map((block, index) => (
-              <Chain
-                key={`${block.timestamp + index}`}
-                start={blockRefs.current[index]}
-                end={blockRefs.current[index + 1]}
-              />
-            ))
-        : null}
+      {blockData.length > 0 && blockRefs.current.length > 0 ? (
+        blockData
+          .slice(0, -1)
+          .map((block, index) => (
+            <Chain
+              key={`${index}chain`}
+              start={blockRefs.current[index]}
+              end={blockRefs.current[index + 1]}
+            />
+          ))
+      ) : (
+        <Chain key="loadingchain" start={0} end={1} />
+      )}
       <OrbitControls enablePan={false} enableRotate={false} />
     </Canvas>
   );

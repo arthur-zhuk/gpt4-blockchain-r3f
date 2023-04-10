@@ -151,7 +151,7 @@ const Blockchain = () => {
       {blockData.length > 0 ? (
         blockData.map((block, index) => (
           <Block
-            key={block.timestamp}
+            key={`${block.timestamp + index}`}
             position={[-5 + (index % 5) * 3, -Math.floor(index / 5) * 3, 0]}
             text={block.text}
             color={block.color}
@@ -165,9 +165,9 @@ const Blockchain = () => {
       {blockData.length > 0 && blockRefs.current.length > 0
         ? blockData
             .slice(0, -1)
-            .map((_, index) => (
+            .map((block, index) => (
               <Chain
-                key={index}
+                key={`${block.timestamp + index}`}
                 start={blockRefs.current[index]}
                 end={blockRefs.current[index + 1]}
               />

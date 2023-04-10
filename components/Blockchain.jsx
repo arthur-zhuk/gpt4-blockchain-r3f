@@ -1,7 +1,14 @@
 import * as THREE from "three";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { createRef, forwardRef, useEffect, useRef, useState } from "react";
+import {
+  createRef,
+  forwardRef,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 
 import { InfuraProvider } from "@ethersproject/providers";
 import { OrbitControls } from "@react-three/drei";
@@ -139,10 +146,10 @@ const Blockchain = () => {
     })();
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     blockRefs.current = blockData.map(() => createRef());
     console.log({ blockRefs });
-  }, [blockData.length, blockData, blockRefs]);
+  }, [blockData]);
 
   return (
     <Canvas>
@@ -167,7 +174,7 @@ const Blockchain = () => {
             .slice(0, -1)
             .map((block, index) => (
               <Chain
-                key={`${block.text}chain`}
+                key={index}
                 start={blockRefs.current[index]}
                 end={blockRefs.current[index + 1]}
               />

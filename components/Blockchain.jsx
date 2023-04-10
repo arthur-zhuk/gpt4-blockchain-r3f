@@ -158,7 +158,7 @@ const Blockchain = () => {
       {blockData.length && blockRefs.current.length ? (
         blockData.map((block, index) => (
           <Block
-            key={index}
+            key={block.timestamp}
             position={[-5 + (index % 5) * 3, -Math.floor(index / 5) * 3, 0]}
             text={block.text}
             color={block.color}

@@ -130,6 +130,7 @@ async function getLatest20Blocks() {
 
 const Blockchain = () => {
   const [blockData, setBlockData] = useState([]);
+  console.log({ blockData });
   const blockRefs = useRef([]);
 
   useEffect(() => {

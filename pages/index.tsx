@@ -1,4 +1,4 @@
-import Blockchain from "../Blockchain";
+import Blockchain from "../components/Blockchain";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });

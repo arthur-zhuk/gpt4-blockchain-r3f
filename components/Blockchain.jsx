@@ -146,8 +146,10 @@ const Blockchain = () => {
       setBlockData(mappedBlocks);
     })();
   }, []);
-  useLayoutEffect(() => {
-    blockRefs.current = blockData.map(() => createRef());
+  useEffect(() => {
+    blockRefs.current = blockData.map(
+      (_, i) => blockRefs.current[i] ?? createRef()
+    );
   }, [blockData]);
 
   return (
